@@ -216,3 +216,74 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+
+document.querySelectorAll('button, a').forEach((element) => {
+  element.addEventListener('focus', (event) => {
+    event.target.style.outline = '2px solid #007bff'; // Aplica contorno ao foco
+  });
+  element.addEventListener('blur', (event) => {
+    event.target.style.outline = ''; // Remove o contorno quando o foco sair
+  });
+});
+
+document.addEventListener('keydown', function(event) {
+  // Verifica se a tecla pressionada foi "Tab"
+  if (event.key === 'Tab') {
+    const focusableElements = document.querySelectorAll('a, button, input, textarea, select');
+    const lastElement = focusableElements[focusableElements.length - 1];
+
+    // Ciclo de navegação
+    if (document.activeElement === lastElement && !event.shiftKey) {
+      focusableElements[0].focus();  // Volta para o primeiro elemento
+      event.preventDefault();
+    } else if (document.activeElement === focusableElements[0] && event.shiftKey) {
+      lastElement.focus();  // Vai para o último elemento
+      event.preventDefault();
+    }
+  }
+});
+
+// document.querySelectorAll('img').forEach((img) => {
+//   if (!img.alt) {
+//     img.alt = 'Imagem sem descrição'; // Definir alt padrão para imagens sem descrição
+//   }
+// });
+
+// const openModal = (modalId) => {
+//   const modal = document.getElementById(modalId);
+//   modal.style.display = 'block'; // Exibe o modal
+//   modal.setAttribute('aria-hidden', 'false');
+  
+//   const firstFocusableElement = modal.querySelector('button');
+//   firstFocusableElement.focus(); // Foca no primeiro elemento do modal
+
+//   const closeModal = () => {
+//     modal.style.display = 'none'; // Esconde o modal
+//     modal.setAttribute('aria-hidden', 'true');
+//     document.querySelector('button#openModal').focus(); // Retorna o foco ao botão original
+//   };
+  
+//   modal.querySelector('.close').addEventListener('click', closeModal);
+// };
+
+// document.querySelector('button#openModal').addEventListener('click', () => openModal('myModal'));
+
+// document.getElementById('toggleContrast').addEventListener('click', () => {
+//   document.body.classList.toggle('high-contrast');
+// });
+
+// // Estilos CSS
+// /* Classe de alto contraste */
+// .high-contrast {
+//   background-color: #000;
+//   color: #FFF;
+// }
+
+// document.getElementById('increaseFont').addEventListener('click', () => {
+//   document.body.style.fontSize = 'larger'; // Aumenta o tamanho da fonte
+// });
+
+// document.getElementById('decreaseFont').addEventListener('click', () => {
+//   document.body.style.fontSize = 'smaller'; // Diminui o tamanho da fonte
+// });
